@@ -1,2 +1,2 @@
-# creation-timer-app
+# Creation-timer-app
 Creating a timer application as incentive for me to create more(meta application).
