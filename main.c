@@ -153,12 +153,21 @@ static void activate(GtkApplication *app) {
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
 
     // Defines the CSS targeting the 'window' node
-    const char *css = "window { background-color: red; }";
+    const char *css =
+    ".background {"
+    "  background-image: url(\"file:///Users/douglassimoes/projects/creation-time-timer/assets/creation-time-bg.jpg\");"
+    "}";
+
+    // print actual directory, here for debugging reasons
+    char cwd[PATH_MAX];
+    getcwd(cwd, sizeof(cwd));
+    printf("cwd = %s\n", cwd);
 
     // Creates the CSS Provider and load the string (found in GtkCssProvider docs)
     GtkCssProvider *provider = gtk_css_provider_new ();
+    gtk_widget_add_css_class(window, "background");
     gtk_css_provider_load_from_string (provider, css);
-    
+
     // Create a horizontal box layout for the whole application
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 10);
     gtk_widget_set_halign (box, GTK_ALIGN_CENTER);
