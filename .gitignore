@@ -1,4 +1,6 @@
 .env
 .vscode/
 my_gtk_app
-
+resources.c
+resources.h
+CreationTimer.app/

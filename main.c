@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <curl/curl.h>
+#include "resources.h"
 
 void load_env_file() {
     FILE *file = fopen(".env", "r");
@@ -147,12 +148,22 @@ static void activate(GtkApplication *app) {
     GtkWidget *timer_label;
     GtkWidget *start_button;
     GtkWidget *stop_button;
-
+    
     TimerAppData *timer_app_data = g_new (TimerAppData, 1);;
+    
+    // Default icon for all windows 
+    // GtkIconTheme *icon;
+    // icon = gtk_icon_theme_get_for_display (gdk_display_get_default ());
+    // gtk_icon_theme_add_search_path(icon,"assets/icon.png"); 
+    // gtk_window_set_default_icon_name("CreationTimer");
 
     window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(window), "GTK4 on macOS");
+    gtk_window_set_title(GTK_WINDOW(window), "CreationTimer");
+    
+    // gtk_window_set_icon_name(GTK_WINDOW(window),"CreationTimer"); // set explicitly the icon for the min window
+    
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
+
 
     // print actual directory, here for debugging reasons
     char cwd[PATH_MAX];
@@ -164,7 +175,10 @@ static void activate(GtkApplication *app) {
     gtk_window_set_child(GTK_WINDOW (window), overlay);
 
     /* Creating a Background GTKPicture that can be configured*/
-    background = gtk_picture_new_for_filename("assets/creation-time-bg.png");
+    // background = gtk_picture_new_for_filename("assets/creation-time-bg.png");
+    // Multiplatform friendly
+    background = gtk_picture_new_for_resource("app-background/assets/creation-time-bg.png");
+
     gtk_picture_set_can_shrink(GTK_PICTURE(background), TRUE);
     gtk_picture_set_content_fit(GTK_PICTURE(background),GTK_CONTENT_FIT_COVER);
 
@@ -210,7 +224,7 @@ int main(int argc, char **argv) {
 
     app = gtk_application_new("com.example.GtkApp", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
-    
+
     status = g_application_run(G_APPLICATION(app), argc, argv);
     g_object_unref(app);
 

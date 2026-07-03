@@ -3,10 +3,24 @@ CFLAGS = $(shell pkg-config --cflags gtk4 libcurl)
 LIBS = $(shell pkg-config --libs gtk4 libcurl)
 TARGET = my_gtk_app
 
+# MacOS 
+APP = CreationTimer.app
+
 all: $(TARGET)
 
 $(TARGET): main.c
-	$(CC) main.c -o $(TARGET) $(CFLAGS) $(LIBS)
+	glib-compile-resources --generate --generate-source resources.xml
+	glib-compile-resources --generate --generate-header resources.xml
+	$(CC) main.c resources.c -o $(TARGET) $(CFLAGS) $(LIBS)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) resources.c resources.h resources.gresource
+
+bundle: my_gtk_app
+		mkdir -p $(APP)
+		mkdir -p $(APP)/Contents/MacOS
+		mkdir -p $(APP)/Contents/Resources
+
+		cp my_gtk_app $(APP)/Contents/MacOS/CreationTimer
+		cp packaging/macos/Info.plist $(APP)/Contents/
+		cp packaging/macos/AppIcon.icns $(APP)/Contents/Resources/

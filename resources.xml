@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="app-background">
+        <file>assets/creation-time-bg.png</file>
+    </gresource>
+</gresources>
