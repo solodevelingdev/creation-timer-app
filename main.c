@@ -178,7 +178,6 @@ static void activate(GtkApplication *app) {
     // background = gtk_picture_new_for_filename("assets/creation-time-bg.png");
     // Multiplatform friendly
     background = gtk_picture_new_for_resource("app-background/assets/creation-time-bg.png");
-
     gtk_picture_set_can_shrink(GTK_PICTURE(background), TRUE);
     gtk_picture_set_content_fit(GTK_PICTURE(background),GTK_CONTENT_FIT_COVER);
 

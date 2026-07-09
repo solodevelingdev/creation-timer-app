@@ -14,9 +14,10 @@ $(TARGET): main.c
 	$(CC) main.c resources.c -o $(TARGET) $(CFLAGS) $(LIBS)
 
 clean:
-	rm -f $(TARGET) resources.c resources.h resources.gresource
+	rm -rf $(TARGET) resources.c resources.h resources.gresource $(APP)
 
 bundle: my_gtk_app
+		./generate_icons.sh
 		mkdir -p $(APP)
 		mkdir -p $(APP)/Contents/MacOS
 		mkdir -p $(APP)/Contents/Resources
