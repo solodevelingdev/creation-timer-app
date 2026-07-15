@@ -101,7 +101,8 @@
        sodipodi:nodetypes="ccccc"
        inkscape:label="path9"
        inkscape:path-effect="#path-effect9"
-       inkscape:original-d="m 3126.0843,-437.88646 0.3336,191.08034 h 190.1134 l 0.063,-191.2125 z" /><image
+       inkscape:original-d="m 3126.0843,-437.88646 0.3336,191.08034 h 190.1134 l 0.063,-191.2125 z"
+       transform="matrix(0.86404202,0,0,0.85195992,438.71241,-49.696055)" /><image
        width="190.5"
        height="190.5"
        preserveAspectRatio="none"
