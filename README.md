@@ -20,7 +20,7 @@ This is how the app looks.
 ![](journey/image copy 11.png)
 
 # Dream list
-:white_large_square To add toolbar for sheet/env info change;
-:white_large_square To have tags with binaries;
-:white_large_square Compile it to Linux, Mac, Windows;
-:white_large_square To have tags with binaries
+- [ ] To add toolbar for sheet/env info change;
+- [ ] To have tags with binaries;
+- [ ] Compile it to Linux, Mac, Windows;
+- [ ] To have tags with binaries;
