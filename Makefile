@@ -8,10 +8,10 @@ APP = CreationTimer.app
 
 all: $(TARGET)
 
-$(TARGET): main.c
+$(TARGET): creation_timer_app.c
 	glib-compile-resources --generate --generate-source resources.xml
 	glib-compile-resources --generate --generate-header resources.xml
-	$(CC) main.c resources.c -o $(TARGET) $(CFLAGS) $(LIBS)
+	$(CC) creation_timer_app.c resources.c -o $(TARGET) $(CFLAGS) $(LIBS)
 
 clean:
 	rm -rf $(TARGET) resources.c resources.h resources.gresource $(APP)

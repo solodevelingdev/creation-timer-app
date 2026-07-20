@@ -1,9 +1,4 @@
-#include <gtk/gtk.h>
-#include <glib-object.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <curl/curl.h>
-#include "resources.h"
+#include "creation_timer_app.h"
 
 void load_env_file() {
     FILE *file = fopen(".env", "r");
@@ -31,13 +26,6 @@ void load_env_file() {
     }
     fclose(file);
 }
-
-typedef struct {
-    GtkWidget *label;
-    unsigned int seconds;
-    unsigned int minutes;
-    int stop_button_pressed;
-} TimerAppData;
 
 void send_time_to_google_sheets(uint8_t minutes, uint8_t seconds) {
     // Read values securely from environment memory
