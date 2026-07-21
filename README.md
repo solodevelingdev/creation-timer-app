@@ -17,7 +17,7 @@ And you should have everything you need to start editing.
 
 # Results
 This is how the app looks.
-![](journey/image copy 11.png)
+![](journey/image_copy_11.png)
 
 # Dream list
 - [ ] To add toolbar for sheet/env info change;

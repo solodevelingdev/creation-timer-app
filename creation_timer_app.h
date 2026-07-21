@@ -8,8 +8,6 @@
 #include <curl/curl.h>
 #include "resources.h"
 
-void load_env_file();
-
 typedef struct{
     GtkWidget *label;
     unsigned int seconds;

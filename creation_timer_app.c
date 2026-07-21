@@ -1,31 +1,5 @@
 #include "creation_timer_app.h"
-
-void load_env_file() {
-    FILE *file = fopen(".env", "r");
-    if (!file) {
-        fprintf(stderr, "Warning: .env file not found! Using system defaults.\n");
-        return;
-    }
-
-    char line[512];
-    while (fgets(line, sizeof(line), file)) {
-        // Remove trailing newline character
-        line[strcspn(line, "\n")] = 0;
-
-        // Skip empty lines or lines starting with comments (#)
-        if (line[0] == '\0' || line[0] == '#') continue;
-
-        // Split the line at the '=' sign
-        char *key = strtok(line, "=");
-        char *value = strtok(NULL, "=");
-
-        if (key && value) {
-            // Save it into the app's runtime environment memory
-            setenv(key, value, 1);
-        }
-    }
-    fclose(file);
-}
+#include "env_var.h"
 
 void send_time_to_google_sheets(uint8_t minutes, uint8_t seconds) {
     // Read values securely from environment memory
@@ -137,8 +111,23 @@ static void activate(GtkApplication *app) {
     GtkWidget *start_button;
     GtkWidget *stop_button;
     
-    TimerAppData *timer_app_data = g_new (TimerAppData, 1);;
-    
+    TimerAppData *timer_app_data = g_new (TimerAppData, 1);
+
+    // MenuBar
+    GMenu *menubar = g_menu_new();
+    // File menu
+    GMenu *file_menu = g_menu_new();
+    g_menu_append(file_menu, "Open", "app.open");
+    g_menu_append(file_menu, "Save", "app.save");
+    g_menu_append_submenu(menubar, "File", G_MENU_MODEL(file_menu));
+    // Edit menu
+    GMenu *edit_menu = g_menu_new();
+    g_menu_append(edit_menu, "Undo", "app.undo");
+    g_menu_append(edit_menu, "Redo", "app.redo");
+    g_menu_append_submenu(menubar, "Edit", G_MENU_MODEL(edit_menu));
+    // Set MenuBar on GTK
+    gtk_application_set_menubar(GTK_APPLICATION(app), G_MENU_MODEL(menubar));
+
     // Default icon for all windows 
     // GtkIconTheme *icon;
     // icon = gtk_icon_theme_get_for_display (gdk_display_get_default ());
